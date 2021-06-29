@@ -1,0 +1,8 @@
+*.class
+*.log
+
+.classpath
+.settings
+.meta
+.lib
+
