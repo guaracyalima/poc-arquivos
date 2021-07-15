@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class LayoutRegistroTotatilizadorArquivoTipoNove {
+public class RegistroTrailler {
 
 	@NotNull(message = "O tipo de registro não pode ser null")
 	@Size(min = 1, max = 1, message = "Tipo registro deve ter 1 caracteres")
