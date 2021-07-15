@@ -13,12 +13,34 @@ import com.github.guaracyalima.pocarquivos.services.DocumentService;
 public class DocumentResource {
 
 	@GET
-	@Path("/t1")
+	@Path("/m1")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response gerarDocumentosMascaraUm () {
 		new DocumentService()
 				.geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraUm(
 						new DtoHelper().layoutUm(), new DtoHelper().listaMascaraUm());
+		
+		return Response.ok("pong").status(200).build();
+	}
+	
+	@GET
+	@Path("/m2")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response gerarDocumentosMascaraDois () {
+		new DocumentService()
+				.geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraFinalizacaoCliente(
+						new DtoHelper().layoutDois(), new DtoHelper().listaDois());
+		
+		return Response.ok("pong").status(200).build();
+	}
+	
+	@GET
+	@Path("/m3")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response gerarDocumentosMascaraTres () {
+		new DocumentService()
+				.geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraInicialCliente(
+						new DtoHelper().layoutTres(), new DtoHelper().listaTres());
 		
 		return Response.ok("pong").status(200).build();
 	}
