@@ -11,6 +11,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class MascaraIncialCliente extends Mascara{
 
+	@NotNull(message = "Código do objeto não pode ser null")
+	private String codigoObjeto;
+	
 	@NotNull(message = "Dia mês corrente não pode ser null")
 	private String diaMesCorrente;
 	
@@ -31,5 +34,13 @@ public class MascaraIncialCliente extends Mascara{
 	
 	@NotNull(message = "Nome da construtora não pode ser null")
 	private String nomeConstrutora;
+	
+	@NotNull(message = "Nome da entidade organizadora não pode ser null")
+	private String nomeEntidadeOganizadora;
+	
+	@NotNull(message = "Nome do vendedor não pode ser null")
+	private String nomeVendedor;
 
+	@NotNull(message = "Nome do responsavel tecnico não pode ser null")
+	private String nomeResponsavelTecnico;
 }

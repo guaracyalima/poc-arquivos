@@ -16,209 +16,145 @@ public class DocumentResourceTest {
 
 	@Test
 	public void test() {
-		
+
 		List<MascaraNotificacao> listaMascaraNotificacao = new ArrayList<>();
-		
+
 		LocalDateTime now = LocalDateTime.now();
-		MascaraNotificacao mascaraNotificacao = MascaraNotificacao.builder()
-		.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
-		.mesCorrente(now.getMonth().toString())
-		.anoMesCorrente(String.valueOf(now.getYear()))
-		.numeroDemandaSISAQ("123")
-		.siglaUnidadeOperacional("SISAQ")
-		.dataRegistro("10/10/1910")
-		.cpfConstrutora("12345678900")
-		.nomeConstrutora("ARAUJO CONSTRUTORA S/A")
-		.cpfRt("12345678900")
-		.nomeRt("NOME RT")
-		.enderecoImovelReclamado("ENDERECO IMOVEL RECLAMADO")
-		.cpfCliente("03676459393")
-		.nomeCliente("NOME CLIENTE")
-		.telefoneCliente("6198774185")
-		.emailCliente("user@user.com")
-		.manifesto("MANIFESTO")
-		.tokenAcesso("5c07c06622b0eb031a4658d8aa235af4")
-		.emailUnidadeResponsavel("user@user.net")
-		.build();
+		MascaraNotificacao mascaraNotificacao = MascaraNotificacao
+				.builder()
+				.codigoObjeto("FF17139351-5 BR")
+				.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
+				.mesCorrente(now.getMonth().toString())
+				.anoMesCorrente(String.valueOf(now.getYear()))
+				.numeroDemandaSISAQ("123")
+				.siglaUnidadeOperacional("SISAQ")
+				.dataRegistro("10/10/1910")
+				.cpfConstrutora("12345678900")
+				.nomeConstrutora("ARAUJO CONSTRUTORA S/A")
+				.cpfCnpjEntidadeOrganizadora("19176393000117")
+				.nomeEntidadeOrganizadora("Araújo Construtora S/A")
+				.cpfCnpjVendedor("19176393000117")
+				.nomeVendedor("Casa Mariri S/A")
+				.cpfRt("12345678900")
+				.nomeRt("RT FULANO DE TALCO")
+				.enderecoImovelReclamado("ENDERECO IMOVEL RECLAMADO")
+				.cpfCliente("12345678900")
+				.nomeCliente("NOME CLIENTE FULANO DE TALCO")
+				.telefoneCliente("6198774185")
+				.emailCliente("user@user.com")
+				.manifesto("MANIFESTO")
+				.tokenAcesso("5c07c06622b0eb031a4658d8aa235af4")
+				.emailUnidadeResponsavel("user@user.net")
+				.build();
 
 		listaMascaraNotificacao.add(mascaraNotificacao);
 		listaMascaraNotificacao.add(mascaraNotificacao);
 		listaMascaraNotificacao.add(mascaraNotificacao);
 		listaMascaraNotificacao.add(mascaraNotificacao);
 		listaMascaraNotificacao.add(mascaraNotificacao);
-		
+
 		new DocumentService().geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraUm(
 				LayoutRegistroIdentificadorClienteCorrespondenciaTipoUm
-				.builder()
-				.bairro("Sincerino")
-				.cep("64980000")
-				.cidade("Corrente")
-				.cif("")
-				.complemento("Casa do araújo")
-				.contrato("ABCD1234")
-				.cpfCnpjPisNis("12345678900")
-				.dadosCorrespondencia("Brasília, VAR1 de VAR2 de VAR3. \n"
-						+ "\n"
-						+ "Assunto: Programa de Olho na Qualidade do Minha Casa, Minha Vida – Protocolo VAR4\n"
-						+ "\n"
-						+ "À(o) Sr(a) \n"
-						+ "VAR5\n"
-						+ "\n"
-						+ "1. Informamos o fechamento do protocolo VAR6, registrado no Programa de Olho na Qualidade, a respeito de problemas no seu imóvel financiado na Caixa, considerando as informações abaixo:\n"
-						+ "\n"
-						+ "VAR7\n"
-						+ "\n"
-						+ "2. Lembramos que conforme código civil 2002, art 618, o construtor é o responsável pela solidez e segurança do imóvel construído pelo prazo de 5 anos a contar da entrega da obra, por qualquer vício do produto pelo prazo de 90 dias após o surgimento do defeito e por prazo indeterminado, com base no artigo 26, parágrafo 3° do Código do consumidor, desde que se tratem de vícios ocultos. Portanto, cabe à construtora a responsabilidade pela execução da obra de modo a garantir sua solidez e responder pelos defeitos decorrentes de vícios construtivos.\n"
-						+ "3. Reforçamos, que caso para problemas provocados por algum dos itens relacionados a seguir, orientamos dirigir-se à sua agência e solicitar a abertura de processo para habilitação de sinistro: \n"
-						+ "oTempestade, temporal, chuva forte;\n"
-						+ "oAlagamento, inundação, enchente; \n"
-						+ "oExplosão, incêndio;\n"
-						+ "oVendaval, destelhamento, desabamento, desmoronamento, deslizamento;\n"
-						+ "oMorte e invalidez permanente do participante do contrato que pactuou renda.\n"
-						+ "Atenciosamente,\n"
-						+ "\n"
-						+ "PROGRAMA DE OLHO NA QUALIDADE\n"
-						+ "CAIXA ECONÔMICA FEDERAL")
-				.endereco("Rua Gabriel Ferreira, Nº 19")
-				.nome("Araujo Lima")
-				.tipoRegistro("1")
-				.uf("PI")
-				.build(),
+						.builder()
+						.bairro("Sincerino")
+						.cep("64980000")
+						.cidade("Corrente")
+						.cif("")
+						.complemento("Casa Mariri")
+						.contrato("ABCD1234")
+						.cpfCnpjPisNis("12345678900")
+						.endereco("Rua Gabriel Ferreira, Nº 19")
+						.nome("Araujo Lima")
+						.tipoRegistro("1")
+						.uf("PI")
+						.build(),
 				listaMascaraNotificacao);
 	}
-	
-	
+
 	@Test
-	public void testDeveGeraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraFinalizacaoCliente() throws Exception {
+	public void testDeveGeraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraFinalizacaoCliente()
+			throws Exception {
 		List<MascaraNotificacaoFinalizacaoCliente> listaMascaraNotificacao = new ArrayList<>();
 		LocalDateTime now = LocalDateTime.now();
-		
-		MascaraNotificacaoFinalizacaoCliente mascaraNotificacaoFinalizacaoCliente = MascaraNotificacaoFinalizacaoCliente.builder()
-		.anoMesCorrente(String.valueOf(now.getYear()))
-		.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
-		.mesCorrente(now.getMonth().toString())
-		.nomeCliente("CLIENTE 007 da silva ")
-		.numeroDemandaSIUV("123")
-		.textoAcao("Brasília, VAR1 de VAR200000 de VAR3. \n"
-				+ "\n"
-				+ "Assunto: Programa de Olho na Qualidade do Minha Casa, Minha Vida – Protocolo VAR4\n"
-				+ "\n"
-				+ "À(o) Sr(a) \n"
-				+ "VAR5\n"
-				+ "\n"
-				+ "1. Informamos o fechamento do protocolo VAR6    , registrado no Programa de Olho na Qualidade, a respeito de problemas no seu imóvel financiado na Caixa, considerando as informações abaixo:\n"
-				+ "\n"
-				+ "VAR700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\n"
-				+ "\n"
-				+ "2. Lembramos que conforme código civil 2002, art 618, o construtor é o responsável pela solidez e segurança do imóvel construído pelo prazo de 5 anos a contar da entrega da obra, por qualquer vício do produto pelo prazo de 90 dias após o surgimento do defeito e por prazo indeterminado, com base no artigo 26, parágrafo 3° do Código do consumidor, desde que se tratem de vícios ocultos. Portanto, cabe à construtora a responsabilidade pela execução da obra de modo a garantir sua solidez e responder pelos defeitos decorrentes de vícios construtivos.\n"
-				+ "3. Reforçamos, que caso para problemas provocados por algum dos itens relacionados a seguir, orientamos dirigir-se à sua agência e solicitar a abertura de processo para habilitação de sinistro: \n"
-				+ "oTempestade, temporal, chuva forte;\n"
-				+ "oAlagamento, inundação, enchente; \n"
-				+ "oExplosão, incêndio;\n"
-				+ "oVendaval, destelhamento, desabamento, desmoronamento, deslizamento;\n"
-				+ "oMorte e invalidez permanente do participante do contrato que pactuou renda.\n"
-				+ "Atenciosamente,\n"
-				+ "\n"
-				+ "PROGRAMA DE OLHO NA QUALIDADE\n"
-				+ "CAIXA ECONÔMICA FEDERAL")
-		.build();
-		
-		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
-		new DocumentService().geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraFinalizacaoCliente(LayoutRegistroIdentificadorClienteCorrespondenciaTipoUm
+
+		MascaraNotificacaoFinalizacaoCliente mascaraNotificacaoFinalizacaoCliente = MascaraNotificacaoFinalizacaoCliente
 				.builder()
-				.bairro("Sincerino")
-				.cep("64980000")
-				.cidade("Corrente")
-				.cif("")
-				.complemento("Casa do araújo")
-				.contrato("ABCD1234")
-				.cpfCnpjPisNis("12345678900")
-				.dadosCorrespondencia("Brasília, VAR1 de VAR2 de VAR3. \n"
-						+ "\n"
-						+ "Assunto: Programa de Olho na Qualidade do Minha Casa, Minha Vida – Protocolo VAR4\n"
-						+ "\n"
-						+ "À(o) Sr(a) \n"
-						+ "VAR5\n"
-						+ "\n"
-						+ "1. Informamos o fechamento do protocolo VAR6, registrado no Programa de Olho na Qualidade, a respeito de problemas no seu imóvel financiado na Caixa, considerando as informações abaixo:\n"
-						+ "\n"
-						+ "VAR7\n"
-						+ "\n"
-						+ "2. Lembramos que conforme código civil 2002, art 618, o construtor é o responsável pela solidez e segurança do imóvel construído pelo prazo de 5 anos a contar da entrega da obra, por qualquer vício do produto pelo prazo de 90 dias após o surgimento do defeito e por prazo indeterminado, com base no artigo 26, parágrafo 3° do Código do consumidor, desde que se tratem de vícios ocultos. Portanto, cabe à construtora a responsabilidade pela execução da obra de modo a garantir sua solidez e responder pelos defeitos decorrentes de vícios construtivos.\n"
-						+ "3. Reforçamos, que caso para problemas provocados por algum dos itens relacionados a seguir, orientamos dirigir-se à sua agência e solicitar a abertura de processo para habilitação de sinistro: \n"
-						+ "oTempestade, temporal, chuva forte;\n"
-						+ "oAlagamento, inundação, enchente; \n"
-						+ "oExplosão, incêndio;\n"
-						+ "oVendaval, destelhamento, desabamento, desmoronamento, deslizamento;\n"
-						+ "oMorte e invalidez permanente do participante do contrato que pactuou renda.\n"
-						+ "Atenciosamente,\n"
-						+ "\n"
-						+ "PROGRAMA DE OLHO NA QUALIDADE\n"
-						+ "CAIXA ECONÔMICA FEDERAL")
-				.endereco("Rua Gabriel Ferreira, Nº 19")
-				.nome("Araujo Lima")
-				.tipoRegistro("1")
-				.uf("PI")
-				.build(),
-				listaMascaraNotificacao );
-		
+				.anoMesCorrente(String.valueOf(now.getYear()))
+				.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
+				.mesCorrente(now.getMonth().toString())
+				.nomeCliente("CLIENTE 007 da silva ")
+				.numeroDemandaSIUV("123")
+				.textoAcao("TEXTO AÇÃO")
+				.build();
+
+
+		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraNotificacao.add(mascaraNotificacaoFinalizacaoCliente);
+		new DocumentService()
+				.geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraFinalizacaoCliente(
+						LayoutRegistroIdentificadorClienteCorrespondenciaTipoUm
+						.builder()
+						.bairro("Sincerino")
+								.cep("64980000")
+								.cidade("Corrente")
+								.cif("")
+								.complemento("Casa Peyote")
+								.contrato("ABCD1234")
+								.cpfCnpjPisNis("12345678900")
+								.endereco("Rua Gabriel Ferreira, Nº 19")
+								.nome("Araujo Lima")
+								.tipoRegistro("2")
+								.uf("PI")
+								.build(),
+						listaMascaraNotificacao);
+
 	}
-	
+
 	@Test
-	public void testDeveGeraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraInicialCliente() throws Exception {
+	public void testDeveGeraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraInicialCliente()
+			throws Exception {
 		List<MascaraIncialCliente> listaMascaraInicial = new ArrayList<>();
 		LocalDateTime now = LocalDateTime.now();
-		
-		MascaraIncialCliente mascaraNotificacaoFinalizacaoCliente = MascaraIncialCliente.builder()
-																								.anoMesCorrente(String.valueOf(now.getYear()))
-																								.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
-																								.mesCorrente(now.getMonth().toString())
-																								.nomeCliente("CLIENTE 007 da silva ")
-																								.numeroDemandaSiouv("123456")
-																								.dataRegistro(String.valueOf(now.getDayOfMonth())+ "/" + String.valueOf(now.getMonthValue())+"/"  + String.valueOf(now.getYear()) )
-																								.nomeConstrutora("Araujo Construtora S/A")
-																								.build();
-		
-		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
-		
-		new DocumentService().geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraInicialCliente(
-				LayoutRegistroIdentificadorClienteCorrespondenciaTipoUm
+
+		MascaraIncialCliente mascaraNotificacaoFinalizacaoCliente = MascaraIncialCliente
 				.builder()
-				.bairro("Sincerino")
-				.cep("64980000")
-				.cidade("Corrente")
-				.cif("")
-				.complemento("Casa do araújo")
-				.contrato("ABCD1234")
-				.cpfCnpjPisNis("12345678900")
-				.dadosCorrespondencia("Brasília, VAR1 de VAR2 de VAR3. \n"
-						+ "\n"
-						+ "Assunto: Programa de Olho na Qualidade do Minha Casa, Minha Vida – Protocolo VAR4\n"
-						+ "\n"
-						+ "À(o) Sr(a) \n"
-						+ "VAR5\n"
-						+ "\n"
-						+ "1. Informamos o fechamento do protocolo VAR6, registrado no Programa de Olho na Qualidade, a respeito de problemas no seu imóvel financiado na Caixa, considerando as informações abaixo:\n"
-						+ "\n"
-						+ "VAR7\n"
-						+ "\n"
-						+ "2. Lembramos que conforme código civil 2002, art 618, o construtor é o responsável pela solidez e segurança do imóvel construído pelo prazo de 5 anos a contar da entrega da obra, por qualquer vício do produto pelo prazo de 90 dias após o surgimento do defeito e por prazo indeterminado, com base no artigo 26, parágrafo 3° do Código do consumidor, desde que se tratem de vícios ocultos. Portanto, cabe à construtora a responsabilidade pela execução da obra de modo a garantir sua solidez e responder pelos defeitos decorrentes de vícios construtivos.\n"
-						+ "3. Reforçamos, que caso para problemas provocados por algum dos itens relacionados a seguir, orientamos dirigir-se à sua agência e solicitar a abertura de processo para habilitação de sinistro: \n"
-						+ "oTempestade, temporal, chuva forte;\n"
-						+ "oAlagamento, inundação, enchente; \n"
-						+ "oExplosão, incêndio;\n"
-						+ "oVendaval, destelhamento, desabamento, desmoronamento, deslizamento;\n"
-						+ "oMorte e invalidez permanente do participante do contrato que pactuou renda.\n"
-						+ "Atenciosamente,\n"
-						+ "\n"
-						+ "PROGRAMA DE OLHO NA QUALIDADE\n"
-						+ "CAIXA ECONÔMICA FEDERAL")
-				.endereco("Rua Gabriel Ferreira, Nº 19")
-				.nome("Araujo Lima")
-				.tipoRegistro("1")
-				.uf("PI")
-				.build(), 
-				listaMascaraInicial);
+				.codigoObjeto("FF17139351-5 BR")
+				.anoMesCorrente(String.valueOf(now.getYear()))
+				.diaMesCorrente(String.valueOf(now.getDayOfMonth()))
+				.mesCorrente(now.getMonth().toString())
+				.nomeCliente("CLIENTE 007 da silva ")
+				.numeroDemandaSiouv("123456")
+				.dataRegistro(String.valueOf(now.getDayOfMonth()) + "/"
+						+ String.valueOf(now.getMonthValue()) + "/" + String.valueOf(now.getYear()))
+				.nomeConstrutora("Araujo Construtora S/A")
+				.build();
+
+		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
+		listaMascaraInicial.add(mascaraNotificacaoFinalizacaoCliente);
+
+		new DocumentService()
+				.geraTxtTabuladoParaRegistroIdentificadorDoClienteECorrespondenciaTipoUmMascaraInicialCliente(
+						LayoutRegistroIdentificadorClienteCorrespondenciaTipoUm
+								.builder()
+								.bairro("Sincerino")
+								.cep("64980000")
+								.cidade("Corrente")
+								.cif("")
+								.complemento("Malhada do Capitão")
+								.contrato("ABCD1234")
+								.cpfCnpjPisNis("12345678900")
+								.endereco("Rua Gabriel Ferreira, Nº 19")
+								.nome("Araujo Lima")
+								.tipoRegistro("3")
+								.uf("PI")
+								.build(),
+						listaMascaraInicial);
 	}
 
 }

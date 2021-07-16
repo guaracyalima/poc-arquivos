@@ -63,13 +63,10 @@ public class DocumentService {
 		List<String> b = new ArrayList<String>();
 
 		try {
-
 			FileWriter writer = new FileWriter(fileName);
-
 			for (MascaraNotificacao mascaraNotificacao : mascara) {
-
 				StringBuilder builder = new StringBuilder();
-
+				String codigoObjeto = StringUtils.rightPad(mascaraNotificacao.getCodigoObjeto().toString(), 15, ESPACAMENTO);
 				String diaMesCorrente = StringUtils.rightPad(mascaraNotificacao.getDiaMesCorrente().toString(), 2, ESPACAMENTO);
 				String mesCorrente = StringUtils.rightPad(mascaraNotificacao.getMesCorrente(), 9, ESPACAMENTO);
 				String anoCorrente = StringUtils.rightPad(mascaraNotificacao.getAnoMesCorrente(), 4, ESPACAMENTO);
@@ -77,23 +74,34 @@ public class DocumentService {
 				String sigalUnidadeOperacional = StringUtils.rightPad(mascaraNotificacao.getSiglaUnidadeOperacional(), 8, ESPACAMENTO);
 				String dataRegistro = StringUtils.rightPad(mascaraNotificacao.getDataRegistro(), 15, ESPACAMENTO);
 				String cpfConstrutora = StringUtils.rightPad(mascaraNotificacao.getCpfConstrutora(), 14, ESPACAMENTO);
-				String nomeConstrutora = StringUtils.rightPad(mascaraNotificacao.getNomeConstrutora(), 50, ESPACAMENTO);
+				String nomeConstrutora = StringUtils.rightPad(mascaraNotificacao.getNomeConstrutora(), 60, ESPACAMENTO);
+				String cpfCnpjEntidadeOrganizadora = StringUtils.rightPad(mascaraNotificacao.getCpfCnpjEntidadeOrganizadora(), 14, ESPACAMENTO);
+				String nomeEntidadeOrganizadora = StringUtils.rightPad(mascaraNotificacao.getNomeEntidadeOrganizadora(), 60, ESPACAMENTO);
+				
+				String cpfCnpjVendedor = StringUtils.rightPad(mascaraNotificacao.getCpfCnpjVendedor(), 14, ESPACAMENTO);
+				String nomeVendedor = StringUtils.rightPad(mascaraNotificacao.getNomeVendedor(), 60, ESPACAMENTO);
+				
 				String cpfRt = StringUtils.rightPad(mascaraNotificacao.getCpfRt(), 14, ESPACAMENTO);
-				String nomeRt = StringUtils.rightPad(mascaraNotificacao.getNomeRt(), 50, ESPACAMENTO);
-				String cpfRepresentates = StringUtils.rightPad(mascaraNotificacao.getCpfRepresentantes(), 14, ESPACAMENTO);
-				String nomeRepresentantes = StringUtils.rightPad(mascaraNotificacao.getNomeRepresentantes(), 50,ESPACAMENTO);
-				String _cpfRepresentates = StringUtils.rightPad(mascaraNotificacao.getCpfRepresentantes(), 14, ESPACAMENTO);
-				String _nomeRepresentantes = StringUtils.rightPad(mascaraNotificacao.getNomeRepresentantes(), 50, ESPACAMENTO);
-				String enderecoImovelReclamado = StringUtils.rightPad(mascaraNotificacao.getEnderecoImovelReclamado(), 120, ESPACAMENTO);
+				String nomeRt = StringUtils.rightPad(mascaraNotificacao.getNomeRt(), 60, ESPACAMENTO);
+				
+//				String cpfRepresentates = StringUtils.rightPad(mascaraNotificacao.getCpfRepresentantes(), 14, ESPACAMENTO);
+//				String nomeRepresentantes = StringUtils.rightPad(mascaraNotificacao.getNomeRepresentantes(), 60,ESPACAMENTO);
+//				String _cpfRepresentates = StringUtils.rightPad(mascaraNotificacao.getCpfRepresentantes(), 14, ESPACAMENTO);
+//				String _nomeRepresentantes = StringUtils.rightPad(mascaraNotificacao.getNomeRepresentantes(), 50, ESPACAMENTO);
+				
+				String enderecoImovelReclamado = StringUtils.rightPad(mascaraNotificacao.getEnderecoImovelReclamado(), 154, ESPACAMENTO);
 
 				String cpfCliente = StringUtils.rightPad(mascaraNotificacao.getCpfCliente(), 11, ESPACAMENTO);
-				String nomeCliente = StringUtils.rightPad(mascaraNotificacao.getNomeCliente(), 50, ESPACAMENTO);
+				String nomeCliente = StringUtils.rightPad(mascaraNotificacao.getNomeCliente(), 60, ESPACAMENTO);
+				
 				String telefonesCliente = StringUtils.rightPad(mascaraNotificacao.getTelefoneCliente(), 154, ESPACAMENTO);
 				String emailCliente = StringUtils.rightPad(mascaraNotificacao.getEmailCliente(), 154, ESPACAMENTO);
-				String manifesto = StringUtils.rightPad(mascaraNotificacao.getManifesto(), 2300, ESPACAMENTO);
+				
+				String manifesto = StringUtils.rightPad(mascaraNotificacao.getManifesto(), 2090, ESPACAMENTO);
 				String toekAcesso = StringUtils.rightPad(mascaraNotificacao.getTokenAcesso(), 32, ESPACAMENTO);
 				String emailUnidadeResponsavel = StringUtils.rightPad(mascaraNotificacao.getEmailUnidadeResponsavel(), 50, ESPACAMENTO);
 
+				builder.append(codigoObjeto);
 				builder.append(diaMesCorrente);
 				builder.append(mesCorrente);
 				builder.append(anoCorrente);
@@ -104,13 +112,17 @@ public class DocumentService {
 				builder.append(dataRegistro);
 				builder.append(cpfConstrutora);
 				builder.append(nomeConstrutora);
+				
+				builder.append(cpfCnpjEntidadeOrganizadora);
+				builder.append(nomeEntidadeOrganizadora);
+				
+				builder.append(cpfCnpjVendedor);
+				builder.append(nomeVendedor);
+				
+				
 				builder.append(cpfRt);
 				builder.append(nomeRt);
-				builder.append(cpfRepresentates);
-				builder.append(nomeRepresentantes);
-				builder.append(nomeRepresentantes);
-				builder.append(_cpfRepresentates);
-				builder.append(_nomeRepresentantes);
+				
 				builder.append(enderecoImovelReclamado);
 				builder.append(cpfCliente);
 				builder.append(nomeCliente);
@@ -135,9 +147,7 @@ public class DocumentService {
 						.rightPad(identificadorClienteCorrespondenciaTipoUm.getCpfCnpjPisNis(), 14, ESPACAMENTO);
 				String contrato = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getContrato(), 20, ESPACAMENTO);
 
-				String dadosCorrespondencia;
-
-				dadosCorrespondencia = StringUtils.rightPad(builder.toString(), 4675, ESPACAMENTO);
+				String dadosCorrespondencia = StringUtils.rightPad(builder.toString(), 4675, ESPACAMENTO);
 
 				String cif = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getCif(), 20, ESPACAMENTO);
 
@@ -155,24 +165,29 @@ public class DocumentService {
 				writer.append(contrato);
 				writer.append(dadosCorrespondencia);
 				writer.append(cif);
+				writer.append("\n");
 
 			}
 
-			RegistroTrailler trailler = RegistroTrailler.builder().tipoRegistro("9")
+			RegistroTrailler trailler = RegistroTrailler
+					.builder()
+					.tipoRegistro("9")
 					.quantidadeTipoRegistro(String.valueOf(mascara.size()))
-					.quantidadeTotalRegistros(String.valueOf(mascara.size())).build();
+					.quantidadeTotalRegistros(String.valueOf(mascara.size() + 1))
+					.build();
 
 			String tipoRegistro = StringUtils.rightPad(trailler.getTipoRegistro(), 1, ESPACAMENTO);
-			String quantidadeRegistrosTipoUm = StringUtils.rightPad(trailler.getQuantidadeTipoRegistro(), 6,
-					ESPACAMENTO);
-			String quantidadeTotalRegistros = StringUtils.rightPad(trailler.getQuantidadeTotalRegistros(), 6,
-					ESPACAMENTO);
+			String quantidadeRegistrosTipoUm = StringUtils.leftPad(trailler.getQuantidadeTipoRegistro(), 6,
+					"0");
+			String quantidadeTotalRegistros = StringUtils.leftPad(trailler.getQuantidadeTotalRegistros(), 6,
+					"0");
 			String filler = StringUtils.rightPad("", 4987, ESPACAMENTO);
 
 			writer.append(tipoRegistro);
 			writer.append(quantidadeRegistrosTipoUm);
 			writer.append(quantidadeTotalRegistros);
 			writer.append(filler);
+			
 
 			writer.close();
 
@@ -208,8 +223,7 @@ public class DocumentService {
 
 				String tipoRegistro = StringUtils
 						.rightPad(identificadorClienteCorrespondenciaTipoUm.getTipoRegistro().toString(), 1);
-				String nome = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getNome(), 80,
-						ESPACAMENTO);
+				String nome = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getNome(), 80, ESPACAMENTO);
 				String endereco = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getEndereco(), 60,
 						ESPACAMENTO);
 				String complemento = StringUtils.rightPad(identificadorClienteCorrespondenciaTipoUm.getComplemento(),
@@ -229,25 +243,25 @@ public class DocumentService {
 
 				StringBuilder builder = new StringBuilder();
 
-				String diaMesCorrente = StringUtils.rightPad(mascaraNotificacao.getDiaMesCorrente().toString(), 2,
-						ESPACAMENTO);
+				String codigoObjeto = StringUtils.rightPad(mascaraNotificacao.getCodigoObjeto(), 15, ESPACAMENTO);
+				String diaMesCorrente = StringUtils.rightPad(mascaraNotificacao.getDiaMesCorrente().toString(), 2, ESPACAMENTO);
 				String mesCorrente = StringUtils.rightPad(mascaraNotificacao.getMesCorrente(), 9, ESPACAMENTO);
 				String anoCorrente = StringUtils.rightPad(mascaraNotificacao.getAnoMesCorrente(), 4, ESPACAMENTO);
-				String numeroDemandaSIUV = StringUtils.rightPad(mascaraNotificacao.getNumeroDemandaSIUV(), 8,
-						ESPACAMENTO);
-
+				String numeroDemandaSIUV = StringUtils.rightPad(mascaraNotificacao.getNumeroDemandaSIUV(), 8, ESPACAMENTO);
 				String nomeCliente = StringUtils.rightPad(mascaraNotificacao.getNomeCliente(), 100, ESPACAMENTO);
 				String textoAcao = StringUtils.rightPad(mascaraNotificacao.getTextoAcao(), 3102, ESPACAMENTO);
 
+				builder.append(codigoObjeto);
 				builder.append(diaMesCorrente);
 				builder.append(mesCorrente);
 				builder.append(anoCorrente);
 				builder.append(numeroDemandaSIUV);
 				builder.append(nomeCliente);
+				builder.append(numeroDemandaSIUV);
 				builder.append(textoAcao);
-
-				log.info("documento_resource >>> Gerado documento para demanda SIOUV Nº "
-						+ mascaraNotificacao.getNumeroDemandaSIUV());
+												
+				log.info("documento_resource >>> Gerado documento para demanda SIOUV Nº " + mascaraNotificacao.getNumeroDemandaSIUV());
+				
 				String dadosCorrespondencia = StringUtils.rightPad(builder.toString(), 4675, ESPACAMENTO);
 				writer.append(tipoRegistro);
 				writer.append(nome);
@@ -261,18 +275,22 @@ public class DocumentService {
 				writer.append(contrato);
 				writer.append(dadosCorrespondencia);
 				writer.append(cif);
+				writer.append("\n");
 
 			}
 
-			RegistroTrailler trailler = RegistroTrailler.builder().tipoRegistro("9")
+			RegistroTrailler trailler = RegistroTrailler
+					.builder()
+					.tipoRegistro("9")
 					.quantidadeTipoRegistro(String.valueOf(mascara.size()))
-					.quantidadeTotalRegistros(String.valueOf(mascara.size())).build();
+					.quantidadeTotalRegistros(String.valueOf(mascara.size() + 1))
+					.build();
 
 			String tipoRegistro = StringUtils.rightPad(trailler.getTipoRegistro(), 1, ESPACAMENTO);
-			String quantidadeRegistrosTipoUm = StringUtils.rightPad(trailler.getQuantidadeTipoRegistro(), 6,
-					ESPACAMENTO);
-			String quantidadeTotalRegistros = StringUtils.rightPad(trailler.getQuantidadeTotalRegistros(), 6,
-					ESPACAMENTO);
+			String quantidadeRegistrosTipoUm = StringUtils.leftPad(trailler.getQuantidadeTipoRegistro(), 6,
+					"0");
+			String quantidadeTotalRegistros = StringUtils.leftPad(trailler.getQuantidadeTotalRegistros(), 6,
+					"0");
 			String filler = StringUtils.rightPad("", 4987, ESPACAMENTO);
 
 			writer.append(tipoRegistro);
@@ -333,17 +351,19 @@ public class DocumentService {
 
 				StringBuilder builder = new StringBuilder();
 
-				String diaMesCorrente = StringUtils.rightPad(mascaraNotificacao.getDiaMesCorrente().toString(), 2,
-						ESPACAMENTO);
+				String codigoObjeto = StringUtils.rightPad(mascaraNotificacao.getCodigoObjeto().toString(), 15, ESPACAMENTO);
+				String diaMesCorrente = StringUtils.rightPad(mascaraNotificacao.getDiaMesCorrente().toString(), 2, ESPACAMENTO);
 				String mesCorrente = StringUtils.rightPad(mascaraNotificacao.getMesCorrente(), 9, ESPACAMENTO);
 				String anoCorrente = StringUtils.rightPad(mascaraNotificacao.getAnoMesCorrente(), 4, ESPACAMENTO);
-				String numeroDemandaSIUOV = StringUtils.rightPad(mascaraNotificacao.getNumeroDemandaSiouv(), 8,
-						ESPACAMENTO);
-
+				String numeroDemandaSIUOV = StringUtils.rightPad(mascaraNotificacao.getNumeroDemandaSiouv(), 8, ESPACAMENTO);
 				String nomeCliente = StringUtils.rightPad(mascaraNotificacao.getNomeCliente(), 100, ESPACAMENTO);
 				String dataRegistro = StringUtils.rightPad(mascaraNotificacao.getDataRegistro(), 10, ESPACAMENTO);
-				String nomeConstrutora = StringUtils.rightPad(mascaraNotificacao.getNomeConstrutora(), 50, ESPACAMENTO);
+				String nomeConstrutora = StringUtils.rightPad(mascaraNotificacao.getNomeConstrutora(), 76, ESPACAMENTO);
+				String nomeEntidadeOrganizadora = StringUtils.rightPad(mascaraNotificacao.getNomeEntidadeOganizadora(), 76, ESPACAMENTO);
+				String nomeVendedor = StringUtils.rightPad(mascaraNotificacao.getNomeVendedor(), 76, ESPACAMENTO);
+				String nomeResponsavelTecnico = StringUtils.rightPad(mascaraNotificacao.getNomeResponsavelTecnico(), 76, ESPACAMENTO);
 
+				builder.append(codigoObjeto);
 				builder.append(diaMesCorrente);
 				builder.append(mesCorrente);
 				builder.append(anoCorrente);
@@ -352,6 +372,10 @@ public class DocumentService {
 				builder.append(numeroDemandaSIUOV);
 				builder.append(dataRegistro);
 				builder.append(nomeConstrutora);
+				builder.append(nomeEntidadeOrganizadora);
+				builder.append(nomeVendedor);
+				builder.append(nomeResponsavelTecnico);
+				
 
 				String dadosCorrespondencia = StringUtils.rightPad(builder.toString(), 4675, ESPACAMENTO);
 
@@ -367,17 +391,16 @@ public class DocumentService {
 				writer.append(contrato);
 				writer.append(dadosCorrespondencia);
 				writer.append(cif);
+				writer.append("\n");
 
 			}
 			RegistroTrailler trailler = RegistroTrailler.builder().tipoRegistro("9")
 					.quantidadeTipoRegistro(String.valueOf(mascara.size()))
-					.quantidadeTotalRegistros(String.valueOf(mascara.size())).build();
+					.quantidadeTotalRegistros(String.valueOf(mascara.size() + 1)).build();
 
 			String tipoRegistro = StringUtils.rightPad(trailler.getTipoRegistro(), 1, ESPACAMENTO);
-			String quantidadeRegistrosTipoUm = StringUtils.rightPad(trailler.getQuantidadeTipoRegistro(), 6,
-					ESPACAMENTO);
-			String quantidadeTotalRegistros = StringUtils.rightPad(trailler.getQuantidadeTotalRegistros() + 1, 6,
-					ESPACAMENTO);
+			String quantidadeRegistrosTipoUm = StringUtils.leftPad(trailler.getQuantidadeTipoRegistro(), 6, "0");
+			String quantidadeTotalRegistros = StringUtils.leftPad(trailler.getQuantidadeTotalRegistros(), 6, "0");
 			String filler = StringUtils.rightPad("", 4987, ESPACAMENTO);
 
 			writer.append(tipoRegistro);

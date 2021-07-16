@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class MascaraNotificacaoFinalizacaoCliente  extends Mascara{
 
+	private String codigoObjeto;
 	private String diaMesCorrente;
 	private String mesCorrente;
 	private String anoMesCorrente;

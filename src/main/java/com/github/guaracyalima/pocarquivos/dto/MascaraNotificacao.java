@@ -5,8 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MascaraNotificacao  extends Mascara{
+public class MascaraNotificacao extends Mascara {
 
+	private String codigoObjeto;
 	private String diaMesCorrente;
 	private String mesCorrente;
 	private String anoMesCorrente;
@@ -15,10 +16,12 @@ public class MascaraNotificacao  extends Mascara{
 	private String dataRegistro;
 	private String cpfConstrutora;
 	private String nomeConstrutora;
+	private String cpfCnpjEntidadeOrganizadora;
+	private String nomeEntidadeOrganizadora;
+	private String cpfCnpjVendedor;
+	private String nomeVendedor;
 	private String cpfRt;
 	private String nomeRt;
-	private String cpfRepresentantes;
-	private String nomeRepresentantes;
 	private String enderecoImovelReclamado;
 	private String cpfCliente;
 	private String nomeCliente;
